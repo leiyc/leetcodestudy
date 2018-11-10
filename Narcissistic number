@@ -1,0 +1,31 @@
+#include<iostream>
+using namespace std;
+int main() {
+	int fi, sec, th;
+	int rc;
+	int a, b;
+	int flag = 0, ki = 0;
+
+	while (cin >> a >> b){
+		for (int i = a; i <= b; i++) {
+			fi = i % 10;
+			sec = (i / 10) % 10;
+			th = (i / 100) % 10;
+			if (i == fi * fi * fi + sec * sec * sec + th * th * th) {
+				if (ki == 0)
+					cout << i;
+				else
+					cout << " " << i;
+				ki++;
+				flag++;
+			}
+		}
+		if (flag > 0)
+			cout << endl;
+		if (flag == 0)
+		cout << "no" << endl;
+	}
+
+		
+	cin >> a;	
+}
