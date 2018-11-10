@@ -1,0 +1,80 @@
+#pragma once
+/****Given a binary tree, find its minimum depth.The minimum depth is the number of nodes
+along the shortest path from the root node down to the nearest leaf node.******/
+
+
+
+
+
+
+
+
+class Solution {
+public:
+	typedef TreeNode* tree;
+	int run(TreeNode *root) {
+		if (!root) return 0;
+		queue<tree> qu;
+		tree last, now;
+		int level, size;
+		last = now = root;/
+		level = 1; qu.push(root);
+		while (qu.size()) {
+			now = qu.front();
+			qu.pop();
+			size = qu.size();
+			if (now->left)qu.push(now->left);
+			if (now->right)qu.push(now->right);
+			if (qu.size() - size == 0)break;
+			if (last == now) {
+				level++;
+				if (qu.size())last = qu.back();
+			}
+		}
+		return level;
+	}
+};
+
+
+
+
+
+
+/***********
+class Solution {
+
+public:
+	typedef TreeNode* tree;
+	int run(TreeNode *root) {
+		queue<tree> qu;
+		tree now, last;
+		int size, level;
+		last = nullptr;
+		qu.push(root);
+		qu.push(last);
+		level = 0;
+		bool flag = true;
+		while (flag) {
+			now = qu.front();
+			qu.pop();
+			if (now != nullptr) {
+				if (now->left == nullptr || now->right == nullptr) {
+					flag = false;
+					break;
+				}
+				if (now->left != nullptr)
+					qu.push(now->left);
+				if (now->right != nullptr)
+					qu.push(now->right);
+			}
+			if (now == nullptr) {
+				qu.push(last);
+				level++;
+			}
+
+		}
+		return level;
+	}
+
+};
+*************/
